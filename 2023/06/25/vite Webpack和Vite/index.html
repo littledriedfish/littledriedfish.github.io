@@ -16,18 +16,21 @@
   <meta name="author" content="Yqs">
   <meta name="keywords" content="">
   
-    <meta name="description" content="webpack和vite工作流程图vite优点:1.webpack服务器启动速度比vite慢2.由于vite启动的时候不需要打包，也就无需分析模块依赖、编译，所以启动速度非常快。当浏览器请求需要的模块时，再对模块进行编译，这种按需动态编译的模式，极大缩短了编译时间，当项目越大，文件越多时，vite的开发时优势越明显3.vite热更新比webpack快4.vite在HRM方面，当某个模块内容改变时，">
+    <meta name="description" content="webpack和vite工作流程图webpackwebpack会对整个应用程序进行依赖关系图构建。而这也会导致一个不可避免的情况，使用Webpack启动应用程序的服务器，会花费比较长的时间——一些大型应用程序可能需要10分钟以上。此时你心里可能已经在抓狂了，为什么会这么费时间？那就让我们一起看看基于 Webpack 包的整个工作流。 viteVite根据JavaScript生态系统中最近所做的两项">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Webpack和Vite打包工具的具体工作流程以及区别">
 <meta property="og:url" content="http://example.com/2023/06/25/vite%20Webpack%E5%92%8CVite/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="webpack和vite工作流程图vite优点:1.webpack服务器启动速度比vite慢2.由于vite启动的时候不需要打包，也就无需分析模块依赖、编译，所以启动速度非常快。当浏览器请求需要的模块时，再对模块进行编译，这种按需动态编译的模式，极大缩短了编译时间，当项目越大，文件越多时，vite的开发时优势越明显3.vite热更新比webpack快4.vite在HRM方面，当某个模块内容改变时，">
+<meta property="og:description" content="webpack和vite工作流程图webpackwebpack会对整个应用程序进行依赖关系图构建。而这也会导致一个不可避免的情况，使用Webpack启动应用程序的服务器，会花费比较长的时间——一些大型应用程序可能需要10分钟以上。此时你心里可能已经在抓狂了，为什么会这么费时间？那就让我们一起看看基于 Webpack 包的整个工作流。 viteVite根据JavaScript生态系统中最近所做的两项">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/images/webpack-vite1.png">
+<meta property="og:image" content="http://example.com/images/webpack-vite2.png">
 <meta property="article:published_time" content="2023-06-25T13:12:54.000Z">
-<meta property="article:modified_time" content="2024-03-21T03:48:56.056Z">
+<meta property="article:modified_time" content="2024-03-21T06:15:56.955Z">
 <meta property="article:author" content="Yqs">
 <meta property="article:tag" content="Vite">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/images/webpack-vite1.png">
   
   
   
@@ -220,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          456 字
+          981 字
         
       </span>
     
@@ -231,7 +234,7 @@
         
         
         
-          4 分钟
+          9 分钟
         
       </span>
     
@@ -273,7 +276,15 @@
             
               <div class="markdown-body">
                 
-                <h1 id="webpack和vite工作流程图"><a href="#webpack和vite工作流程图" class="headerlink" title="webpack和vite工作流程图"></a>webpack和vite工作流程图</h1><h1 id="vite优点"><a href="#vite优点" class="headerlink" title="vite优点:"></a>vite优点:</h1><p>1.webpack服务器启动速度比vite慢<br>2.由于vite启动的时候不需要打包，也就无需分析模块依赖、编译，所以启动速度非常快。当浏览器请求需要的模块时，再对模块进行编译，这种按需动态编译的模式，极大缩短了编译时间，当项目越大，文件越多时，vite的开发时优势越明显<br>3.vite热更新比webpack快<br>4.vite在HRM方面，当某个模块内容改变时，让浏览器去重新请求该模块即可，而不是像webpack重新将该模块的所有依赖重新编译,<br>5.vite使用esbuild(Go 编) 预构建依赖，而webpack基于nodejs,比node快 10-100 倍</p>
+                <h1 id="webpack和vite工作流程图"><a href="#webpack和vite工作流程图" class="headerlink" title="webpack和vite工作流程图"></a>webpack和vite工作流程图</h1><h2 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h2><p>webpack会对整个应用程序进行依赖关系图构建。而这也会导致一个不可避免的情况，使用Webpack启动应用程序的服务器，会花费比较长的时间——一些大型应用程序可能需要10分钟以上。<br>此时你心里可能已经在抓狂了，为什么会这么费时间？那就让我们一起看看基于 Webpack 包的整个工作流。<br><img src="/images/webpack-vite1.png" srcset="/img/loading.gif" lazyload alt="图片" title=" "></p>
+<h2 id="vite"><a href="#vite" class="headerlink" title="vite"></a>vite</h2><p>Vite根据JavaScript生态系统中最近所做的两项改进——浏览器中ES模块的可用性，以及esbuild等本机捆绑工具的编译功能，为开发者提供更加强大的支持。<br>Vite的核心理念是非捆绑式开发建设。<br>浏览器中ES模块的可用性允许您在浏览器上运行JavaScript应用程序，而无需将它们捆绑在一起。<br>Vite的核心思想很简单：当浏览器请求时，使用ES模块进行转换并提供一段应用程序代码。<br>开始开发后，Vite将首先将JavaScript模块分为两类：依赖模块和应用程序模块。<br>依赖模块是从node_modules文件夹导入的JavaScript模块。这些模块将使用esbuild进行处理和绑定，esbuild是用Go编写的JavaScript绑定器，执行速度比Webpack快10到100倍。<br>应用程序模块是为应用程序编写的模块，通常涉及特定于库的扩展，如：jsx &#x2F; vue 或 scss文件。<br>虽然基于捆绑程序的工作流（如Webpack）必须在单个浏览器请求之前处理整个JavaScript模块，但Vite仅在单个浏览器请求之前处理依赖模块。<br><img src="/images/webpack-vite2.png" srcset="/img/loading.gif" lazyload alt="图片" title=" "></p>
+<p class="note note-primary">
+就好像我们去一家餐厅吃饭，Webpack的后厨一口气做完所有的饭，然后一道道为你上菜；而Vite的厨子手脚麻利，很快做完一道菜就上一道菜。
+这就是vite构建项目体验上感觉速度会快的原因。
+webpack拥有着高用户群体，但随着时间推移 vite不断完善生态，可能会后来者居上了。
+</p>
+
+<h1 id="vite优点"><a href="#vite优点" class="headerlink" title="vite优点:"></a>vite优点:</h1><p>1.webpack服务器启动速度比vite慢<br>2.由于vite启动的时候不需要打包，也就无需分析模块依赖、编译，所以启动速度非常快。当浏览器请求需要的模块时，再对模块进行编译，这种按需动态编译的模式，极大缩短了编译时间，当项目越大，文件越多时，vite的开发时优势越明显<br>3.vite热更新比webpack快<br>4.vite在HRM方面，当某个模块内容改变时，让浏览器去重新请求该模块即可，而不是像webpack重新将该模块的所有依赖重新编译,<br>5.vite使用esbuild(Go 编) 预构建依赖，而webpack基于nodejs,比node快 10-100 倍</p>
 <h1 id="vite缺点"><a href="#vite缺点" class="headerlink" title="vite缺点:"></a>vite缺点:</h1><p>1.生态不及webpack，加载器、插件不够主富<br>2.打包到生产环境时，vite使用传统的rolup进行打包，生产环境esbuild构建对于CSs和代码分割不够友好。所以，vite的优势是体现在开发阶段<br>没被大规模重度使用，会隐藏一些问题<br>项目的开发浏览器要支持esmodule，而目不能识别commonis语法<br>3.webpack和vite的工作流程及区别（通俗解释）<br>webpack和vite的工作流程：<br>webpack打包是先分析项目路由然后分析路由相对应的模块，然后全部打包，再调用服务器，所以编译速度较慢，没有用到的模块也全部打包了。<br>vite是先调用服务器，直接准备好，然后看你请求的是哪一个路由然后只去打包哪一个路由所对应的模块，没有请求的路由就不去打包，做到了按需编译打包，不再等待整个应用编译完成，提高了编译运行时速度。</p>
 
                 
@@ -365,12 +376,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2023/12/24/three.js%20%E5%9F%BA%E7%A1%80-%E4%BD%BF%E7%94%A8/" title="threeJs 基础使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">threeJs 基础使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/05/28/vue3%20Composition%20API%20%E5%92%8C%20Vue%20Mixins(1)/" title="vue3 Composition API 和 Vue Mixins (1)">
-                        <span class="hidden-mobile">vue3 Composition API 和 Vue Mixins (1)</span>
+                      <a href="/2022/07/02/vue%20%E5%9F%BA%E7%A1%80-%E4%BD%BF%E7%94%A8%E9%85%8D%E7%BD%AE/" title="vue 基础-使用配置">
+                        <span class="hidden-mobile">vue 基础-使用配置</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
