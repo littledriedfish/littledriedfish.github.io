@@ -24,7 +24,7 @@
 <meta property="og:description" content="安装three.js每个月都会有新版本，使用需要对应版本对应文档，避免api冲突。threejs官方文件包所有版本：https:&#x2F;&#x2F;github.com&#x2F;mrdoob&#x2F;three.js&#x2F;releases （下载想要的版本包，包内有对应的文档）Threejs中文网(电子书课件)：www.webgl3d.cn 1234567three.js-文件包...└───docs——Three.js API文档">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-12-24T14:11:23.000Z">
-<meta property="article:modified_time" content="2024-03-28T07:26:36.637Z">
+<meta property="article:modified_time" content="2024-03-28T07:26:59.063Z">
 <meta property="article:author" content="Yqs">
 <meta property="article:tag" content="threeJs">
 <meta name="twitter:card" content="summary_large_image">
@@ -191,7 +191,7 @@
   
 
 <div id="banner" class="banner" parallax=true
-     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+     style="background: url('/img/default.jpg') no-repeat center center; background-size: cover;">
   <div class="full-bg-img">
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
@@ -342,6 +342,8 @@
 
 <p>嵌套分组</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs bash">// 平行光子菜单<br>const dirFolder = gui.addFolder(<span class="hljs-string">&#x27;平行光&#x27;</span>);<br>dirFolder.close();//关闭菜单<br>// 平行光强度<br>dirFolder.add(directionalLight, <span class="hljs-string">&#x27;intensity&#x27;</span>,0,2);<br>const dirFolder2 = dirFolder.addFolder(<span class="hljs-string">&#x27;位置&#x27;</span>);//子菜单的子菜单<br>dirFolder2.close();//关闭菜单<br>// 平行光位置<br>dirFolder2.add(directionalLight.position, <span class="hljs-string">&#x27;x&#x27;</span>,-400,400);<br>dirFolder2.add(directionalLight.position, <span class="hljs-string">&#x27;y&#x27;</span>,-400,400);<br>dirFolder2.add(directionalLight.position, <span class="hljs-string">&#x27;z&#x27;</span>,-400,400);<br></code></pre></td></tr></table></figure>
+
+
 <h2 id="一点总结"><a href="#一点总结" class="headerlink" title="一点总结"></a>一点总结</h2><p class="note note-primary">
 可以通过源码的构造函数来学习three.js。例如 透视摄像机PerspectiveCamera 构造函数中包含属性 type、fov、zoom、near、aspect等等，
 这些属性可以结合文档了解用法用途、可以new出实例来打印其默认值、还可以通过其源码逻辑来很好的使用，就比如 PerspectiveCamera 构造函数里修改了属性值之后调取了 this.updateProjectionMatrix(); 这个方法来更新摄像机状态，所以在使用中也修改摄像机的属性时也必须调用 updateProjectionMatrix 方法来实现更新。
